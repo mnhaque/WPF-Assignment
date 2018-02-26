@@ -8,7 +8,7 @@
 5. On click of submit button the data should flow into database (if you don’t have database use a file for now)
 
  
-#Exercise 2
+# Exercise 2
 
 6. Create a new AdvancedButton control based on button control and replace the original button on the window with this one.
 7. Modify the AdvancedButton on the window to show the attached image as the button. Limit the button size to 80x80
@@ -16,7 +16,7 @@
 9. Add a property IsExpand to AdvancedButton. When IsExpand Property is set to true the control should expand (double its size). Add a checkbox to toggle this property value
 
 
-#Exercise 3
+# Exercise 3
 
 10. Add a new section on the same window below the form  and call it Live View.
 11. Live View should reflect the live values it is typed on the form
