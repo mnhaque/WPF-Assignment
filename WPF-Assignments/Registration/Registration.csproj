@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLayer\UserService.cs" />
+    <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="Views\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
