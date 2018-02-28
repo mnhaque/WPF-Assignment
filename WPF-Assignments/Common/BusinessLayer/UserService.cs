@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Registration.Model;
+using Common.Model;
 
-namespace Registration.BusinessLayer
+namespace Common.BusinessLayer
 {
-    public class UserService
+    public class UserService: IUserService
     {
         public bool SaveUser(User user)
         {

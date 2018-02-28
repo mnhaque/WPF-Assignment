@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C148E07-7C45-460C-8C01-6EFAD60D2D65}</ProjectGuid>
+    <ProjectGuid>{5E3413CA-2412-4569-8686-39E8AD587B1A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Registration</RootNamespace>
-    <AssemblyName>Registration</AssemblyName>
+    <RootNamespace>Assignment2</RootNamespace>
+    <AssemblyName>Assignment2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\DateToStringConverter.cs" />
-    <Compile Include="ViewModel\RegistrationViewModel.cs" />
+    <Compile Include="CustomControls\AdvancedButton.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Views\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
@@ -73,8 +73,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\RegistrationForm.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,9 @@
       <Project>{EF4A76FE-7A12-4365-86E3-CA6352E7282E}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="submit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

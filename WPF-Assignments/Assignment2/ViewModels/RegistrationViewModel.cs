@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,31 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Common;
-using Common.BusinessLayer;
-using Common.Model;
 
-namespace Registration.ViewModel
+
+namespace Assignment2.ViewModels
 {
     public class RegistrationViewModel : INotifyPropertyChanged
     {
-        private IUserService userService;
         private string name;
         private DateTime dob;
         public ICommand submit;
         private void SaveRecord(object param)
         {
-            if (userService == null)
-            {
-                userService = new UserService();
-            }
             if (!string.IsNullOrWhiteSpace(Name))
             {
-                var response = userService.SaveUser(new User {Name = Name, DOB = DOB});
-                if (response)
-                {
                     MessageBox.Show("user added successfully");
-                }
             }
             else
             {
@@ -40,7 +30,6 @@ namespace Registration.ViewModel
 
         public RegistrationViewModel()
         {
-            this.userService = new UserService();
             submit = new RelayCommand(SaveRecord);
         }
 
