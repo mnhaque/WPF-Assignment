@@ -1,11 +1,11 @@
-﻿using Common.Model;
+﻿using Registration.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.BusinessLayer
+namespace Registration.BusinessLayer
 {
     public interface IUserService
     {

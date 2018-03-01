@@ -55,7 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLayer\IUserService.cs" />
+    <Compile Include="BusinessLayer\UserService.cs" />
     <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="CustomControls\AdvancedButton.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="Views\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
@@ -105,10 +110,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{EF4A76FE-7A12-4365-86E3-CA6352E7282E}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <Resource Include="Views\submit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
