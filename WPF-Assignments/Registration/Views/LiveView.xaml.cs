@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace Registration.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for LiveView.xaml
     /// </summary>
-    public partial class RegistrationForm : UserControl
+    public partial class LiveView : UserControl
     {
-        public RegistrationForm()
+        public LiveView()
         {
             InitializeComponent();
-            DataContext = new RegistrationViewModel(Event.EventInstance.EventAggregator);
+            DataContext = new LiveViewViewModel(Event.EventInstance.EventAggregator);
         }
     }
 }

@@ -13,38 +13,21 @@ using System.Windows.Input;
 
 namespace Registration.ViewModel
 {
-    public class RegistrationViewModel : INotifyPropertyChanged
+    public class LiveViewViewModel : INotifyPropertyChanged
     {
-        private IUserService userService;
         private string name;
         private DateTime dob;
-        public ICommand submit;
         private IEventAggregator EventAggregator;
-        private void SaveRecord(object param)
-        {
-            if (userService == null)
-            {
-                userService = new UserService();
-            }
-            if (!string.IsNullOrWhiteSpace(Name))
-            {
-                var response = userService.SaveUser(new User {Name = Name, DOB = DOB});
-                if (response)
-                {
-                    MessageBox.Show("user added successfully");
-                }
-            }
-            else
-            {
-                MessageBox.Show("name is blank");
-            }
-        }
 
-        public RegistrationViewModel(IEventAggregator eventAggregator)
+        public LiveViewViewModel(IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
-            this.userService = new UserService();
-            submit = new RelayCommand(SaveRecord);
+            this.EventAggregator.GetEvent<PubSubEvent<string>>().Subscribe((name) => {
+                this.Name = name;
+            });
+            this.EventAggregator.GetEvent<PubSubEvent<DateTime>>().Subscribe((dob) => {
+                this.DOB = dob;
+            });
         }
 
         public string Name
@@ -57,7 +40,6 @@ namespace Registration.ViewModel
             {
                 name = value;
                 RaisePropertyChanged(nameof(Name));
-                this.EventAggregator.GetEvent<PubSubEvent<string>>().Publish(this.Name);
             }
         }
         public DateTime DOB
@@ -70,11 +52,9 @@ namespace Registration.ViewModel
             {
                 dob = value;
                 RaisePropertyChanged(nameof(DOB));
-                this.EventAggregator.GetEvent<PubSubEvent<DateTime>>().Publish(this.DOB);
             }
         }
 
-        public ICommand Submit { get { return submit; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged(string property)
