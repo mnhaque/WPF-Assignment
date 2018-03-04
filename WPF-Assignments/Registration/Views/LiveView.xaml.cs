@@ -24,7 +24,6 @@ namespace Registration.Views
         public LiveView()
         {
             InitializeComponent();
-            DataContext = new LiveViewViewModel(Event.EventInstance.EventAggregator);
         }
     }
 }

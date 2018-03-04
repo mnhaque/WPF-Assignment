@@ -17,9 +17,9 @@ namespace Registration.ViewModel
     {
         private IUserService userService;
         private string name;
-        private DateTime dob;
+        private DateTime? dob;
         public ICommand submit;
-        private IEventAggregator EventAggregator;
+        private IEventAggregator eventAggregator;
         private void SaveRecord(object param)
         {
             if (userService == null)
@@ -28,7 +28,7 @@ namespace Registration.ViewModel
             }
             if (!string.IsNullOrWhiteSpace(Name))
             {
-                var response = userService.SaveUser(new User {Name = Name, DOB = DOB});
+                var response = userService.SaveUser(new User { Name = Name, DOB = DOB ?? DateTime.MinValue });
                 if (response)
                 {
                     MessageBox.Show("user added successfully");
@@ -40,9 +40,9 @@ namespace Registration.ViewModel
             }
         }
 
-        public RegistrationViewModel(IEventAggregator eventAggregator)
+        public RegistrationViewModel()
         {
-            EventAggregator = eventAggregator;
+            eventAggregator = Event.EventInstance.EventAggregator;
             this.userService = new UserService();
             submit = new RelayCommand(SaveRecord);
         }
@@ -57,10 +57,10 @@ namespace Registration.ViewModel
             {
                 name = value;
                 RaisePropertyChanged(nameof(Name));
-                this.EventAggregator.GetEvent<PubSubEvent<string>>().Publish(this.Name);
+                this.eventAggregator.GetEvent<PubSubEvent<string>>().Publish(this.Name);
             }
         }
-        public DateTime DOB
+        public DateTime? DOB
         {
             get
             {
@@ -70,7 +70,7 @@ namespace Registration.ViewModel
             {
                 dob = value;
                 RaisePropertyChanged(nameof(DOB));
-                this.EventAggregator.GetEvent<PubSubEvent<DateTime>>().Publish(this.DOB);
+                this.eventAggregator.GetEvent<PubSubEvent<DateTime?>>().Publish(this.DOB);
             }
         }
 

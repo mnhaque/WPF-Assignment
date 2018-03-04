@@ -7,6 +7,9 @@
              xmlns:vm="clr-namespace:Registration.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vm:LiveViewViewModel/>
+    </UserControl.DataContext>
     <Grid Margin="20">
     <Grid.RowDefinitions>
         <RowDefinition Height="30"/>
