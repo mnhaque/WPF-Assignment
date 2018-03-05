@@ -7,6 +7,7 @@
              xmlns:customControls="clr-namespace:Registration.CustomControls"
              xmlns:local="clr-namespace:Registration.Views"
              xmlns:converters="clr-namespace:Registration.Converter"
+             xmlns:validation="clr-namespace:Registration.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
@@ -30,13 +31,29 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Name" Grid.Row="0" Grid.Column="0"/>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+        <TextBox Grid.Row="0" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:NameFieldValidator/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Date of Birth" Grid.Row="2" Grid.Column="0"/>
-        <TextBox x:Name="dateOfBirth" Text="{Binding DOB, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1"/>
+        <TextBox x:Name="dateOfBirth" Grid.Row="2" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="DOB" UpdateSourceTrigger="PropertyChanged" StringFormat="dd-MM-yyyy">
+                    <Binding.ValidationRules>
+                        <validation:DateValidator/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Age" Grid.Row="4" Grid.Column="0"/>
         <Label Content="{Binding ElementName=dateOfBirth, Path=Text, Converter={StaticResource dobToAgeConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
         <CheckBox Grid.Row="6" Grid.Column="0" x:Name="isExpandedChkbx" Content="IsExpanded" IsChecked="{Binding ElementName=advancedButton, Path=IsExpand}"/>
-        <customControls:AdvancedButton x:Name="advancedButton" Grid.Row="6" Command="{Binding Submit}" IsExpand="False" Grid.Column="1" ToolTip="Save to DB" MaxWidth="80" MaxHeight="80" VerticalAlignment="Top">
+        <customControls:AdvancedButton x:Name="advancedButton" Height="40" Width="40" Grid.Row="6" Command="{Binding Submit}" IsExpand="False" Grid.Column="1" ToolTip="Save to DB" MaxWidth="80" MaxHeight="80" VerticalAlignment="Top">
                 <Image Source="submit.png" Width="{Binding Height}" Height="{Binding Height}" />
         </customControls:AdvancedButton>
     </Grid>

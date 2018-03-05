@@ -17,7 +17,7 @@ namespace Registration.ViewModel
     {
         private IUserService userService;
         private string name;
-        private DateTime? dob;
+        private string dob;
         public ICommand submit;
         private IEventAggregator eventAggregator;
         private void SaveRecord(object param)
@@ -28,8 +28,8 @@ namespace Registration.ViewModel
             }
             if (!string.IsNullOrWhiteSpace(Name))
             {
-                var response = userService.SaveUser(new User { Name = Name, DOB = DOB ?? DateTime.MinValue });
-                if (response)
+                var response = userService.SaveUser(new User { Name = Name, DOB = DOB });
+                if (true)
                 {
                     MessageBox.Show("user added successfully");
                 }
@@ -57,10 +57,9 @@ namespace Registration.ViewModel
             {
                 name = value;
                 RaisePropertyChanged(nameof(Name));
-                this.eventAggregator.GetEvent<PubSubEvent<string>>().Publish(this.Name);
             }
         }
-        public DateTime? DOB
+        public string DOB
         {
             get
             {
@@ -70,7 +69,6 @@ namespace Registration.ViewModel
             {
                 dob = value;
                 RaisePropertyChanged(nameof(DOB));
-                this.eventAggregator.GetEvent<PubSubEvent<DateTime?>>().Publish(this.DOB);
             }
         }
 
@@ -82,6 +80,7 @@ namespace Registration.ViewModel
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
+                this.eventAggregator.GetEvent<PubSubEvent<User>>().Publish(new User { Name = Name, DOB = DOB });
             }
         }
     }

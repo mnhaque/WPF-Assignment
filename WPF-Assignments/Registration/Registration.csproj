@@ -94,6 +94,8 @@
     <Compile Include="Event.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="ValidationRules\DateValidator.cs" />
+    <Compile Include="ValidationRules\NameFieldValidator.cs" />
     <Compile Include="ViewModel\LiveViewViewModel.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="Views\LiveView.xaml.cs">

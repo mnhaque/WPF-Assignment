@@ -16,17 +16,15 @@ namespace Registration.ViewModel
     public class LiveViewViewModel : INotifyPropertyChanged
     {
         private string name;
-        private DateTime? dob;
+        private string dob;
         private IEventAggregator eventAggregator;
 
         public LiveViewViewModel()
         {
             eventAggregator = Event.EventInstance.EventAggregator;
-            this.eventAggregator.GetEvent<PubSubEvent<string>>().Subscribe((name) => {
-                this.Name = name;
-            });
-            this.eventAggregator.GetEvent<PubSubEvent<DateTime?>>().Subscribe((dob) => {
-                this.DOB = dob;
+            this.eventAggregator.GetEvent<PubSubEvent<User>>().Subscribe((user) => {
+                this.Name = user.Name;
+                this.DOB = user.DOB;
             });
         }
 
@@ -42,7 +40,7 @@ namespace Registration.ViewModel
                 RaisePropertyChanged(nameof(Name));
             }
         }
-        public DateTime? DOB
+        public string DOB
         {
             get
             {

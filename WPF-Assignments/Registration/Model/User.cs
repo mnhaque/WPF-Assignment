@@ -9,6 +9,6 @@ namespace Registration.Model
     public class User
     {
         public string Name { get; set; }
-        public DateTime DOB { get; set; }
+        public string DOB { get; set; }
     }
 }
