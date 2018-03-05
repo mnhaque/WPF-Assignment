@@ -53,7 +53,7 @@
         <Label Content="Age" Grid.Row="4" Grid.Column="0"/>
         <Label Content="{Binding ElementName=dateOfBirth, Path=Text, Converter={StaticResource dobToAgeConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
         <CheckBox Grid.Row="6" Grid.Column="0" x:Name="isExpandedChkbx" Content="IsExpanded" IsChecked="{Binding ElementName=advancedButton, Path=IsExpand}"/>
-        <customControls:AdvancedButton x:Name="advancedButton" Height="40" Width="40" Grid.Row="6" Command="{Binding Submit}" IsExpand="False" Grid.Column="1" ToolTip="Save to DB" MaxWidth="80" MaxHeight="80" VerticalAlignment="Top">
+        <customControls:AdvancedButton x:Name="advancedButton" Grid.Row="6" Height="40" Width="40" Command="{Binding Submit}" Grid.Column="1" IsExpand="False" ToolTip="Save to DB" MaxWidth="80" MaxHeight="80" VerticalAlignment="Top">
                 <Image Source="submit.png" Width="{Binding Height}" Height="{Binding Height}" />
         </customControls:AdvancedButton>
     </Grid>

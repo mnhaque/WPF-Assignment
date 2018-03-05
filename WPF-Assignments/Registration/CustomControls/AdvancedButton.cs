@@ -12,6 +12,16 @@ namespace Registration.CustomControls
     {
         public static readonly DependencyProperty IsExpandProperty = DependencyProperty.Register("IsExpand", typeof(bool), typeof(AdvancedButton), new UIPropertyMetadata(true, OnValueChanged));
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            if (IsExpand)
+            {
+                this.Height = this.Height * 2;
+                this.Width = this.Width * 2;
+            }
+        }
+
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var button = d as AdvancedButton;
@@ -19,13 +29,13 @@ namespace Registration.CustomControls
             {
                 if ((bool)e.NewValue)
                 {
-                    button.Height = 2 * button.ActualHeight;
-                    button.Width = 2 * button.ActualWidth;
+                    button.Height = button.Height*2;
+                    button.Width = button.Width*2;
                 }
                 else
                 {
-                    button.Height = button.ActualHeight / 2;
-                    button.Width = button.ActualWidth / 2;
+                    button.Height = button.Height / 2;
+                    button.Width = button.Width / 2;
                 }
             }
         }
